@@ -1,0 +1,15 @@
+﻿CREATE TABLE [dbo].[Cars]
+(
+	[CarId] INT NOT NULL IDENTITY,
+	[TypeId] INT NOT NULL,
+	[MakeId] INT NOT NULL,
+	[Color] NVARCHAR(50) NOT NULL,
+	[Model] NVARCHAR(50) NOT NULL,
+	[Year] INT NOT NULL,
+	[Price] DECIMAL NOT NULL,
+	CONSTRAINT [PK_Cars] PRIMARY KEY ([CarId]),
+	CONSTRAINT [FK_Car_Types] FOREIGN KEY ([TypeId]) REFERENCES [CarTypes]([TypeId]),
+	CONSTRAINT [FK_Car_Makes] FOREIGN KEY ([MakeId]) REFERENCES [CarMakes]([MakeId])
+	
+	
+)
