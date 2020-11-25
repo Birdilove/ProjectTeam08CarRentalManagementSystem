@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[CarTypes]
+(
+	[TypeId] INT NOT NULL IDENTITY,
+	[Type] NVARCHAR(50) NOT NULL,
+	CONSTRAINT [PK_CarTypes] PRIMARY KEY ([TypeId])
+	
+)
