@@ -10,17 +10,17 @@ using System.Windows.Forms;
 
 namespace ProjectTeam08CarRegistrationModule
 {
-    public partial class RegistrationForm : Form
+    public partial class NewCustomerForm : Form
     {
-        public RegistrationForm()
+        public NewCustomerForm()
         {
             InitializeComponent();
         }
 
-        private void buttonNewCustomer_Click(object sender, EventArgs e)
+        private void buttonAddCustomer_Click(object sender, EventArgs e)
         {
-            NewCustomerForm newCustomerForm = new NewCustomerForm();
-            newCustomerForm.Show();
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }
