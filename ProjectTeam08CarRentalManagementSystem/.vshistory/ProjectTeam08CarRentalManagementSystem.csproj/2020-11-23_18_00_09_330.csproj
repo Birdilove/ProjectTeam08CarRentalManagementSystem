@@ -46,23 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Add Make.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Add Make.Designer.cs">
-      <DependentUpon>Add Make.cs</DependentUpon>
-    </Compile>
     <Compile Include="AddCar.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AddCar.Designer.cs">
       <DependentUpon>AddCar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AddType.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddType.Designer.cs">
-      <DependentUpon>AddType.cs</DependentUpon>
     </Compile>
     <Compile Include="AdminForm.cs">
       <SubType>Form</SubType>
@@ -78,14 +66,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Add Make.resx">
-      <DependentUpon>Add Make.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AddCar.resx">
       <DependentUpon>AddCar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddType.resx">
-      <DependentUpon>AddType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
