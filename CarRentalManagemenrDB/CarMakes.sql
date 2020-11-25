@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[CarMakes]
+(
+	[MakeId] INT NOT NULL IDENTITY,
+	[Make] NVARCHAR(50) NOT NULL,
+	CONSTRAINT [PK_CarMakes] PRIMARY KEY ([MakeId])
+)

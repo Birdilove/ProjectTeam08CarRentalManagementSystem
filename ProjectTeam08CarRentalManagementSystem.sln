@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTeam08CarRentalManagementSystem", "ProjectTeam08CarRentalManagementSystem\ProjectTeam08CarRentalManagementSystem.csproj", "{B2B5C11E-F7F8-4FBE-AAE3-EFA0D2A1421D}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CarRentalManagementDB", "CarRentalManagemenrDB\CarRentalManagementDB.sqlproj", "{3DE681F6-21AD-46FA-B5EB-E695043469B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalManagementCodeFirstFromDB", "CarRentalManagementCodeFirstFromDB\CarRentalManagementCodeFirstFromDB.csproj", "{83E7B93B-E252-4915-89E1-E4AB8291638F}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTeam08CarRegistrationModule", "ProjectTeam08CarRegistrationModule\ProjectTeam08CarRegistrationModule.csproj", "{74DFA16F-FD4B-42B4-8D46-D0B18E75CF60}"
 EndProject
 Global
@@ -17,10 +21,6 @@ Global
 		{B2B5C11E-F7F8-4FBE-AAE3-EFA0D2A1421D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2B5C11E-F7F8-4FBE-AAE3-EFA0D2A1421D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2B5C11E-F7F8-4FBE-AAE3-EFA0D2A1421D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{74DFA16F-FD4B-42B4-8D46-D0B18E75CF60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{74DFA16F-FD4B-42B4-8D46-D0B18E75CF60}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{74DFA16F-FD4B-42B4-8D46-D0B18E75CF60}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{74DFA16F-FD4B-42B4-8D46-D0B18E75CF60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
