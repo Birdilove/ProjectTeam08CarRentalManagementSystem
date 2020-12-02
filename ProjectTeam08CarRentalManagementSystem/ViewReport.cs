@@ -15,7 +15,7 @@ namespace ProjectTeam08CarRentalManagementSystem
 {
     public partial class ViewReport : Form
     {
-        private CarRentalManagementEntities context= new CarRentalManagementEntities();
+        private CarRentalManagementEntities context = new CarRentalManagementEntities();
         public ViewReport()
         {
             InitializeComponent();
@@ -53,7 +53,7 @@ namespace ProjectTeam08CarRentalManagementSystem
                 rentalPrice.Add(rentalPeriod[idx] * Decimal.ToDouble(priceList[idx]));
                 totalIncome += rentalPrice[idx];
             }
-            
+
             label.Text = totalIncome.ToString("c");
 
         }
@@ -85,7 +85,7 @@ namespace ProjectTeam08CarRentalManagementSystem
 
             //set returned car list
             var returnedCarList = reservationList.Where(r => r.IsReturend == true).ToList();
-            SetDataGridView(dataGridViewReturnedCar,labelTotal, returnedCarList);
+            SetDataGridView(dataGridViewReturnedCar, labelTotal, returnedCarList);
             //set not returned car list
             var notReturnedCarList = reservationList.Where(r => r.IsReturend == false).ToList();
             SetDataGridView(dataGridViewNotYetReturned, labelEstimatedTotal, notReturnedCarList);
@@ -107,10 +107,10 @@ namespace ProjectTeam08CarRentalManagementSystem
             context.Reservations.Load();
             //set returned car list
             var returnedCarList = context.Reservations.Where(r => r.IsReturend == true).ToList();
-            SetDataGridView(dataGridViewReturnedCar,labelTotal, returnedCarList);
+            SetDataGridView(dataGridViewReturnedCar, labelTotal, returnedCarList);
             //set not returned car list
             var notReturnedCarList = context.Reservations.Where(r => r.IsReturend == false).ToList();
-            SetDataGridView(dataGridViewNotYetReturned,labelEstimatedTotal, notReturnedCarList);
+            SetDataGridView(dataGridViewNotYetReturned, labelEstimatedTotal, notReturnedCarList);
 
         }
 
