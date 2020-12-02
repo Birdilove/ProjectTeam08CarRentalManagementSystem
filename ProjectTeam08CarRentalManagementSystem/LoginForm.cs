@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace ProjectTeam08CarRentalManagementSystem
 {
     public partial class LoginForm : Form
@@ -15,11 +16,13 @@ namespace ProjectTeam08CarRentalManagementSystem
         public LoginForm()
         {
             InitializeComponent();
+            buttonLogin.Click += ButtonLogin_Click;
         }
 
-        private void buttonLogin_Click(object sender, EventArgs e)
+        private void ButtonLogin_Click(object sender, EventArgs e)
         {
-            Application.Run(new Form1());
+            AdminForm adminForm = new AdminForm();
+            adminForm.ShowDialog();
         }
     }
 }

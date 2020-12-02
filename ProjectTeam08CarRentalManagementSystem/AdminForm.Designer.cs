@@ -1,6 +1,6 @@
 ﻿namespace ProjectTeam08CarRentalManagementSystem
 {
-    partial class Form1
+    partial class AdminForm
     {
         /// <summary>
         /// Required designer variable.

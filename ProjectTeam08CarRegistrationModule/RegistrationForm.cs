@@ -16,5 +16,11 @@ namespace ProjectTeam08CarRegistrationModule
         {
             InitializeComponent();
         }
+
+        private void buttonNewCustomer_Click(object sender, EventArgs e)
+        {
+            NewCustomerForm newCustomerForm = new NewCustomerForm();
+            newCustomerForm.Show();
+        }
     }
 }
