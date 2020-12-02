@@ -19,13 +19,6 @@ namespace ProjectTeam08CarRentalManagementSystem
             InitializeComponent();
             InitializeAdminForm();
             buttonAddNewCar.Click += ButtonAddNewCar_Click;
-            buttonViewReports.Click += ButtonViewReports_Click;
-        }
-
-        private void ButtonViewReports_Click(object sender, EventArgs e)
-        {
-            ViewReport viewReport = new ViewReport();
-            viewReport.ShowDialog();
         }
 
         private void ButtonAddNewCar_Click(object sender, EventArgs e)
@@ -54,6 +47,7 @@ namespace ProjectTeam08CarRentalManagementSystem
                 datagridView.Columns[column].Visible = false;
             }
         }
+
 
         private void HandleExceptions<T>(DataGridView gridView, DataGridViewDataErrorEventArgs e)
         {

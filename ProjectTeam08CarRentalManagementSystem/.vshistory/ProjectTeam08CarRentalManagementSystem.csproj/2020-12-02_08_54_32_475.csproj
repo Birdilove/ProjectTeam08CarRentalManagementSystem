@@ -131,16 +131,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CarRentalManagementCodeFirstFromDB\CarRentalManagementCodeFirstFromDB.csproj">
-      <Project>{83e7b93b-e252-4915-89e1-e4ab8291638f}</Project>
-      <Name>CarRentalManagementCodeFirstFromDB</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EFControllerUtilities\EFControllerUtilities.csproj">
-      <Project>{f7b44d6d-563a-4d6d-9718-b554924b4d97}</Project>
-      <Name>EFControllerUtilities</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
