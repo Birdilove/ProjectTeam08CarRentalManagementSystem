@@ -60,24 +60,9 @@ namespace ProjectTeam08CarRentalManagementSystem
 
         public void LoadAvailableCars()
         {
-            CarRentalManagementEntities context = new CarRentalManagementEntities();
             List<Reservation> reservations = Controller<CarRentalManagementEntities, Reservation>.GetEntities(r => !r.IsReturend).ToList();
             List<int> carIds = reservations.Where(r => !r.IsReturend).Select(r => r.CarId).ToList();
-            List<Car> cars = Controller<CarRentalManagementEntities, Car>.GetEntities(c => !carIds.Contains(c.CarId)).ToList();
-
-            var availableCars = (from s in cars
-                              join cs in context.CarTypes on s.TypeId equals cs.TypeId
-                              join os in context.CarMakes on s.MakeId equals os.MakeId
-                              select new
-                              {
-                                  CarMake = os.Make,
-                                  CarType = cs.Type,
-                                  Model = s.Model,
-                                  Year = s.Year,
-                                  Price = s.Price
-                              }).ToList();
-
-            dataGridViewAvailableCars.DataSource = availableCars;
+            dataGridViewAvailableCars.DataSource = Controller<CarRentalManagementEntities, Car>.GetEntities(c => !carIds.Contains(c.CarId)).ToList();
         }
 
         public void LoadReseverdCars()
@@ -89,7 +74,7 @@ namespace ProjectTeam08CarRentalManagementSystem
             List<int> typeIds = cars.Select(r => r.TypeId).ToList();
             List<int> makeIds = cars.Select(r => r.MakeId).ToList();
             
-            var rentedCars = (from s in cars
+            var query = (from s in cars
                          join cs in context.CarTypes on s.TypeId equals cs.TypeId
                          join os in context.CarMakes on s.MakeId equals os.MakeId
              select new
@@ -101,7 +86,7 @@ namespace ProjectTeam08CarRentalManagementSystem
                  Price = s.Price
              }).ToList();
 
-            dataGridViewRentedCars.DataSource = rentedCars;
+            dataGridViewRentedCars.DataSource = query;
         }
 
         private void HandleExceptions<T>(DataGridView gridView, DataGridViewDataErrorEventArgs e)
