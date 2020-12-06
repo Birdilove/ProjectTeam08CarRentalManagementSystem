@@ -14,11 +14,11 @@ namespace ProjectTeam08CarRentalManagementSystem
 {
     public partial class AdminForm : Form
     {
-        CarRentalManagementEntities context = new CarRentalManagementEntities();
         public AdminForm()
         {
             InitializeComponent();
             InitializeAdminForm();
+
             buttonAddNewCar.Click += ButtonAddNewCar_Click;
             buttonViewReports.Click += ButtonViewReports_Click;
             buttonMoveToAvailable.Click += ButtonMoveToAvailable_Click;
@@ -65,7 +65,7 @@ namespace ProjectTeam08CarRentalManagementSystem
 
         public void LoadAvailableCars()
         {
-            
+            CarRentalManagementEntities context = new CarRentalManagementEntities();
             List<Reservation> reservations = Controller<CarRentalManagementEntities, Reservation>.GetEntities(r => !r.IsReturend).ToList();
             List<int> carIds = reservations.Where(r => !r.IsReturend).Select(r => r.CarId).ToList();
             List<Car> cars = Controller<CarRentalManagementEntities, Car>.GetEntities(c => !carIds.Contains(c.CarId)).ToList();
@@ -88,6 +88,7 @@ namespace ProjectTeam08CarRentalManagementSystem
 
         public void LoadReseverdCars()
         {
+            CarRentalManagementEntities context = new CarRentalManagementEntities();
             List<Reservation> reservations = Controller<CarRentalManagementEntities, Reservation>.GetEntities(r => !r.IsReturend).ToList();
             List<int> carIds = reservations.Where(r => !r.IsReturend).Select(r => r.CarId).ToList();
             List<Car> cars = Controller<CarRentalManagementEntities, Car>.GetEntities(c => carIds.Contains(c.CarId)).ToList();
@@ -98,6 +99,7 @@ namespace ProjectTeam08CarRentalManagementSystem
                          select new
                          {
                              CarId = s.CarId,
+                             MakeId = s.MakeId,
                              CarMake = os.Make,
                              CarType = cs.Type,
                              Model = s.Model,
@@ -110,14 +112,15 @@ namespace ProjectTeam08CarRentalManagementSystem
 
         public void MoveToAvailable()
         {
+            CarRentalManagementEntities context = new CarRentalManagementEntities();
             int selectedrowindexCarId = dataGridViewRentedCars.SelectedCells[0].RowIndex;
             DataGridViewRow selectedRowCarId = dataGridViewRentedCars.Rows[selectedrowindexCarId];
             string carId = Convert.ToString(selectedRowCarId.Cells["CarId"].Value);
-            Reservation res = Controller<CarRentalManagementEntities, Reservation>.GetEntities(r => r.CarId == Int32.Parse(carId) && !r.IsReturend).First();
+
+            Reservation res = Controller<CarRentalManagementEntities, Reservation>.GetEntities(r => r.CarId == Int32.Parse(carId)).First();
             res.IsReturend = true;
             Controller<CarRentalManagementEntities, Reservation>.UpdateEntity(res);
-            LoadReseverdCars();
-            LoadAvailableCars();
+            dataGridViewAvailableCars.Refresh();
         }
 
         private void HandleExceptions<T>(DataGridView gridView, DataGridViewDataErrorEventArgs e)

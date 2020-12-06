@@ -14,19 +14,13 @@ namespace ProjectTeam08CarRentalManagementSystem
 {
     public partial class AdminForm : Form
     {
-        CarRentalManagementEntities context = new CarRentalManagementEntities();
         public AdminForm()
         {
             InitializeComponent();
             InitializeAdminForm();
+
             buttonAddNewCar.Click += ButtonAddNewCar_Click;
             buttonViewReports.Click += ButtonViewReports_Click;
-            buttonMoveToAvailable.Click += ButtonMoveToAvailable_Click;
-        }
-
-        private void ButtonMoveToAvailable_Click(object sender, EventArgs e)
-        {
-            MoveToAvailable();
         }
 
         private void ButtonViewReports_Click(object sender, EventArgs e)
@@ -65,7 +59,7 @@ namespace ProjectTeam08CarRentalManagementSystem
 
         public void LoadAvailableCars()
         {
-            
+            CarRentalManagementEntities context = new CarRentalManagementEntities();
             List<Reservation> reservations = Controller<CarRentalManagementEntities, Reservation>.GetEntities(r => !r.IsReturend).ToList();
             List<int> carIds = reservations.Where(r => !r.IsReturend).Select(r => r.CarId).ToList();
             List<Car> cars = Controller<CarRentalManagementEntities, Car>.GetEntities(c => !carIds.Contains(c.CarId)).ToList();
@@ -74,8 +68,6 @@ namespace ProjectTeam08CarRentalManagementSystem
                               join os in context.CarMakes on s.MakeId equals os.MakeId
                               select new
                               {
-                                  CarId = s.CarId,
-                                  MakeId = s.MakeId,
                                   CarMake = os.Make,
                                   CarType = cs.Type,
                                   Model = s.Model,
@@ -88,6 +80,7 @@ namespace ProjectTeam08CarRentalManagementSystem
 
         public void LoadReseverdCars()
         {
+            CarRentalManagementEntities context = new CarRentalManagementEntities();
             List<Reservation> reservations = Controller<CarRentalManagementEntities, Reservation>.GetEntities(r => !r.IsReturend).ToList();
             List<int> carIds = reservations.Where(r => !r.IsReturend).Select(r => r.CarId).ToList();
             List<Car> cars = Controller<CarRentalManagementEntities, Car>.GetEntities(c => carIds.Contains(c.CarId)).ToList();
@@ -95,29 +88,16 @@ namespace ProjectTeam08CarRentalManagementSystem
             var rentedCars = (from s in cars
                          join cs in context.CarTypes on s.TypeId equals cs.TypeId
                          join os in context.CarMakes on s.MakeId equals os.MakeId
-                         select new
-                         {
-                             CarId = s.CarId,
-                             CarMake = os.Make,
-                             CarType = cs.Type,
-                             Model = s.Model,
-                             Year = s.Year,
-                             Price = s.Price
-                         }).ToList();
+             select new
+             {
+                 CarMake = os.Make,
+                 CarType = cs.Type,
+                 Model = s.Model,
+                 Year = s.Year,
+                 Price = s.Price
+             }).ToList();
 
             dataGridViewRentedCars.DataSource = rentedCars;
-        }
-
-        public void MoveToAvailable()
-        {
-            int selectedrowindexCarId = dataGridViewRentedCars.SelectedCells[0].RowIndex;
-            DataGridViewRow selectedRowCarId = dataGridViewRentedCars.Rows[selectedrowindexCarId];
-            string carId = Convert.ToString(selectedRowCarId.Cells["CarId"].Value);
-            Reservation res = Controller<CarRentalManagementEntities, Reservation>.GetEntities(r => r.CarId == Int32.Parse(carId) && !r.IsReturend).First();
-            res.IsReturend = true;
-            Controller<CarRentalManagementEntities, Reservation>.UpdateEntity(res);
-            LoadReseverdCars();
-            LoadAvailableCars();
         }
 
         private void HandleExceptions<T>(DataGridView gridView, DataGridViewDataErrorEventArgs e)

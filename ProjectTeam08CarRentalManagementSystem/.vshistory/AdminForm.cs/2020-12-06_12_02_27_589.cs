@@ -113,6 +113,7 @@ namespace ProjectTeam08CarRentalManagementSystem
             int selectedrowindexCarId = dataGridViewRentedCars.SelectedCells[0].RowIndex;
             DataGridViewRow selectedRowCarId = dataGridViewRentedCars.Rows[selectedrowindexCarId];
             string carId = Convert.ToString(selectedRowCarId.Cells["CarId"].Value);
+
             Reservation res = Controller<CarRentalManagementEntities, Reservation>.GetEntities(r => r.CarId == Int32.Parse(carId) && !r.IsReturend).First();
             res.IsReturend = true;
             Controller<CarRentalManagementEntities, Reservation>.UpdateEntity(res);

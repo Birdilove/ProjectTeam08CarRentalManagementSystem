@@ -35,6 +35,7 @@
             this.labelAvailableCars = new System.Windows.Forms.Label();
             this.dataGridViewRentedCars = new System.Windows.Forms.DataGridView();
             this.labelRentedCars = new System.Windows.Forms.Label();
+            this.buttonMoveToRented = new System.Windows.Forms.Button();
             this.buttonMoveToAvailable = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAvailableCars)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRentedCars)).BeginInit();
@@ -50,7 +51,7 @@
             // 
             // buttonBackupDatabase
             // 
-            this.buttonBackupDatabase.Location = new System.Drawing.Point(506, 326);
+            this.buttonBackupDatabase.Location = new System.Drawing.Point(602, 330);
             this.buttonBackupDatabase.Name = "buttonBackupDatabase";
             this.buttonBackupDatabase.Size = new System.Drawing.Size(150, 40);
             this.buttonBackupDatabase.TabIndex = 7;
@@ -59,7 +60,7 @@
             // 
             // buttonViewReports
             // 
-            this.buttonViewReports.Location = new System.Drawing.Point(506, 280);
+            this.buttonViewReports.Location = new System.Drawing.Point(602, 284);
             this.buttonViewReports.Name = "buttonViewReports";
             this.buttonViewReports.Size = new System.Drawing.Size(150, 40);
             this.buttonViewReports.TabIndex = 6;
@@ -68,7 +69,7 @@
             // 
             // buttonAddNewCar
             // 
-            this.buttonAddNewCar.Location = new System.Drawing.Point(306, 280);
+            this.buttonAddNewCar.Location = new System.Drawing.Point(205, 284);
             this.buttonAddNewCar.Name = "buttonAddNewCar";
             this.buttonAddNewCar.Size = new System.Drawing.Size(150, 40);
             this.buttonAddNewCar.TabIndex = 5;
@@ -107,9 +108,18 @@
             this.labelRentedCars.TabIndex = 10;
             this.labelRentedCars.Text = "Rented Cars";
             // 
+            // buttonMoveToRented
+            // 
+            this.buttonMoveToRented.Location = new System.Drawing.Point(402, 284);
+            this.buttonMoveToRented.Name = "buttonMoveToRented";
+            this.buttonMoveToRented.Size = new System.Drawing.Size(150, 40);
+            this.buttonMoveToRented.TabIndex = 11;
+            this.buttonMoveToRented.Text = "Move to Rented";
+            this.buttonMoveToRented.UseVisualStyleBackColor = true;
+            // 
             // buttonMoveToAvailable
             // 
-            this.buttonMoveToAvailable.Location = new System.Drawing.Point(306, 326);
+            this.buttonMoveToAvailable.Location = new System.Drawing.Point(402, 330);
             this.buttonMoveToAvailable.Name = "buttonMoveToAvailable";
             this.buttonMoveToAvailable.Size = new System.Drawing.Size(150, 40);
             this.buttonMoveToAvailable.TabIndex = 12;
@@ -121,8 +131,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(964, 391);
+            this.ClientSize = new System.Drawing.Size(964, 450);
             this.Controls.Add(this.buttonMoveToAvailable);
+            this.Controls.Add(this.buttonMoveToRented);
             this.Controls.Add(this.labelRentedCars);
             this.Controls.Add(this.dataGridViewRentedCars);
             this.Controls.Add(this.labelAvailableCars);
@@ -148,6 +159,7 @@
         private System.Windows.Forms.Label labelAvailableCars;
         private System.Windows.Forms.DataGridView dataGridViewRentedCars;
         private System.Windows.Forms.Label labelRentedCars;
+        private System.Windows.Forms.Button buttonMoveToRented;
         private System.Windows.Forms.Button buttonMoveToAvailable;
     }
 }
