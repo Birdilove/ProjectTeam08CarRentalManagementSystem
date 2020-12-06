@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProjectTeam08CarRegistrationModule;
 
 
 namespace ProjectTeam08CarRentalManagementSystem
@@ -21,8 +22,16 @@ namespace ProjectTeam08CarRentalManagementSystem
 
         private void ButtonLogin_Click(object sender, EventArgs e)
         {
-            AdminForm adminForm = new AdminForm();
-            adminForm.ShowDialog();
+            if (radioButtonAdmin.Checked)
+            {
+                AdminForm adminForm = new AdminForm();
+                adminForm.ShowDialog();
+            }
+            if (radioButtonUser.Checked)
+            {
+                RegistrationForm regForm = new RegistrationForm();
+                regForm.ShowDialog();
+            }
         }
     }
 }

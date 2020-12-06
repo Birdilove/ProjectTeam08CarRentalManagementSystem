@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CarRentalManagementCodeFirstFromDB;
+using EFControllerUtilities;
 
 namespace ProjectTeam08CarRegistrationModule
 {
@@ -19,7 +21,12 @@ namespace ProjectTeam08CarRegistrationModule
 
         private void buttonAddCustomer_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            Customer customer = new Customer();
+            customer.FirstName = textBoxfirstName.Text;
+            customer.LastName = textBoxLastName.Text;
+            customer.PhoneNumber = textBoxPhoneNumber.Text;
+            Controller<CarRentalManagementEntities, Customer>.AddEntity(customer);
+              this.DialogResult = DialogResult.OK;
             this.Close();
         }
     }
