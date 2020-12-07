@@ -34,7 +34,7 @@ namespace ProjectTeam08CarRentalManagementSystem
 
         private void ButtonBackupDatabase_Click(object sender, EventArgs e)
         {
-            BackupDataSet();
+            throw new NotImplementedException();
         }
 
         private void ButtonMoveToAvailable_Click(object sender, EventArgs e)
@@ -168,7 +168,7 @@ namespace ProjectTeam08CarRentalManagementSystem
         /// <summary>
         /// Method to backup database to xml.
         /// </summary>
-        public void BackupDataSet()
+        public void BackupDataSetToXML()
         {
             if (rentalDataSet == null)
             {

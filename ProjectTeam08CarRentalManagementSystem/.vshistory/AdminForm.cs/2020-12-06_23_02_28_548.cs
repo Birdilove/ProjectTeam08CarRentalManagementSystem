@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using EFControllerUtilities;
 using CarRentalManagementCodeFirstFromDB;
-using System.Diagnostics;
 
 namespace ProjectTeam08CarRentalManagementSystem
 {
@@ -34,7 +33,7 @@ namespace ProjectTeam08CarRentalManagementSystem
 
         private void ButtonBackupDatabase_Click(object sender, EventArgs e)
         {
-            BackupDataSet();
+            throw new NotImplementedException();
         }
 
         private void ButtonMoveToAvailable_Click(object sender, EventArgs e)
@@ -54,9 +53,6 @@ namespace ProjectTeam08CarRentalManagementSystem
             addCar.ShowDialog();
         }
 
-        /// <summary>
-        /// Method to initialize the main form.
-        /// </summary>
         public void InitializeAdminForm()
         {
             InitializeDataGridView<Reservation>(dataGridViewRentedCars,"CarId");
@@ -65,12 +61,6 @@ namespace ProjectTeam08CarRentalManagementSystem
             LoadReseverdCars();
         }
 
-        /// <summary>
-        /// Method to initialize the datagrid views.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="datagridView"></param>
-        /// <param name="columnsToHide"></param>
         private void InitializeDataGridView<T>(DataGridView datagridView, params string[] columnsToHide) where T : class
         {
             datagridView.AllowUserToAddRows = false;
@@ -165,21 +155,18 @@ namespace ProjectTeam08CarRentalManagementSystem
             e.Cancel = true;
         }
 
-        /// <summary>
-        /// Method to backup database to xml.
-        /// </summary>
-        public void BackupDataSet()
+        public void BackupDataSetToXML()
         {
-            if (rentalDataSet == null)
+            if (hotelDataSet == null)
             {
-                Debug.WriteLine("BackupDataSetToXML: Error null dataset");
+                Debug.WriteLine("BackupDataSetToXML: Error - null dataset");
                 return;
             }
 
             
-            Debug.WriteLine("BackupDataSetToXML: backing up to " + rentalDataSet);
+            Debug.WriteLine("BackupDataSetToXML: backing up to " + hotelDataSet);
 
-            rentalDataSet.WriteXml(rentalDataSet.DataSetName + ".xml", XmlWriteMode.WriteSchema);
+            hotelDataSet.WriteXml(hotelDataSet.DataSetName + ".xml", XmlWriteMode.WriteSchema);
         }
     }
 }

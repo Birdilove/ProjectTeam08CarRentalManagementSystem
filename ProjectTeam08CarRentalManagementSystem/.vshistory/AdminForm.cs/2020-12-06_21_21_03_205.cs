@@ -9,32 +9,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using EFControllerUtilities;
 using CarRentalManagementCodeFirstFromDB;
-using System.Diagnostics;
 
 namespace ProjectTeam08CarRentalManagementSystem
 {
     public partial class AdminForm : Form
     {
-        private CarRentalManagementEntities context;
-        private DataSet rentalDataSet;
+        CarRentalManagementEntities context = new CarRentalManagementEntities();
         public AdminForm()
         {
-            rentalDataSet = new DataSet()
-            {
-                DataSetName = "rentalDataSet",
-            };
-            context = new CarRentalManagementEntities();
             InitializeComponent();
             InitializeAdminForm();
             buttonAddNewCar.Click += ButtonAddNewCar_Click;
             buttonViewReports.Click += ButtonViewReports_Click;
             buttonMoveToAvailable.Click += ButtonMoveToAvailable_Click;
-            buttonBackupDatabase.Click += ButtonBackupDatabase_Click;
-        }
-
-        private void ButtonBackupDatabase_Click(object sender, EventArgs e)
-        {
-            BackupDataSet();
         }
 
         private void ButtonMoveToAvailable_Click(object sender, EventArgs e)
@@ -54,9 +41,6 @@ namespace ProjectTeam08CarRentalManagementSystem
             addCar.ShowDialog();
         }
 
-        /// <summary>
-        /// Method to initialize the main form.
-        /// </summary>
         public void InitializeAdminForm()
         {
             InitializeDataGridView<Reservation>(dataGridViewRentedCars,"CarId");
@@ -65,12 +49,6 @@ namespace ProjectTeam08CarRentalManagementSystem
             LoadReseverdCars();
         }
 
-        /// <summary>
-        /// Method to initialize the datagrid views.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="datagridView"></param>
-        /// <param name="columnsToHide"></param>
         private void InitializeDataGridView<T>(DataGridView datagridView, params string[] columnsToHide) where T : class
         {
             datagridView.AllowUserToAddRows = false;
@@ -86,11 +64,9 @@ namespace ProjectTeam08CarRentalManagementSystem
             }
         }
 
-        /// <summary>
-        /// Method to load the list of available cars.
-        /// </summary>
         public void LoadAvailableCars()
         {
+            
             List<Reservation> reservations = Controller<CarRentalManagementEntities, Reservation>.GetEntities(r => !r.IsReturend).ToList();
             List<int> carIds = reservations.Where(r => !r.IsReturend).Select(r => r.CarId).ToList();
             List<Car> cars = Controller<CarRentalManagementEntities, Car>.GetEntities(c => !carIds.Contains(c.CarId)).ToList();
@@ -111,10 +87,6 @@ namespace ProjectTeam08CarRentalManagementSystem
             dataGridViewAvailableCars.DataSource = availableCars;
         }
 
-
-        /// <summary>
-        /// Method to load the list of rented cars.
-        /// </summary>
         public void LoadReseverdCars()
         {
             List<Reservation> reservations = Controller<CarRentalManagementEntities, Reservation>.GetEntities(r => !r.IsReturend).ToList();
@@ -137,10 +109,6 @@ namespace ProjectTeam08CarRentalManagementSystem
             dataGridViewRentedCars.DataSource = rentedCars;
         }
 
-
-        /// <summary>
-        /// Method to move a car from rented to available.
-        /// </summary>
         public void MoveToAvailable()
         {
             int selectedrowindexCarId = dataGridViewRentedCars.SelectedCells[0].RowIndex;
@@ -153,33 +121,9 @@ namespace ProjectTeam08CarRentalManagementSystem
             LoadAvailableCars();
         }
 
-
-        /// <summary>
-        /// Method to handle exceptions.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="gridView"></param>
-        /// <param name="e"></param>
         private void HandleExceptions<T>(DataGridView gridView, DataGridViewDataErrorEventArgs e)
         {
             e.Cancel = true;
-        }
-
-        /// <summary>
-        /// Method to backup database to xml.
-        /// </summary>
-        public void BackupDataSet()
-        {
-            if (rentalDataSet == null)
-            {
-                Debug.WriteLine("BackupDataSetToXML: Error null dataset");
-                return;
-            }
-
-            
-            Debug.WriteLine("BackupDataSetToXML: backing up to " + rentalDataSet);
-
-            rentalDataSet.WriteXml(rentalDataSet.DataSetName + ".xml", XmlWriteMode.WriteSchema);
         }
     }
 }
