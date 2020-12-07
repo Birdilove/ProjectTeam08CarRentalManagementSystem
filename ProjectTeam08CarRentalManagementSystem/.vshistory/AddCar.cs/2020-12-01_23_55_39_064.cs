@@ -17,7 +17,6 @@ namespace ProjectTeam08CarRentalManagementSystem
         CarRentalManagementEntities context;
         public AddCar()
         {
-            context = new CarRentalManagementEntities();
             InitializeComponent();
             InitializeAddCar();
             buttonAddCar.Click += ButtonAddCar_Click;
@@ -42,23 +41,18 @@ namespace ProjectTeam08CarRentalManagementSystem
             AddNewCar();
         }
 
-        /// <summary>
-        /// Method to initialize the add car form.
-        /// </summary>
         public void InitializeAddCar()
         {
-            
+            context = new CarRentalManagementEntities();
             var carMakes = context.CarMakes.OrderBy(x => x.MakeId).Select(x => x.Make);
             var carType = context.CarTypes.OrderBy(x => x.TypeId).Select(x => x.Type);
             comboBoxCarMake.DataSource = carMakes.ToList();
             comboBoxCarType.DataSource = carType.ToList();
         }
 
-        /// <summary>
-        /// Method to add a new car with all the details.
-        /// </summary>
         public void AddNewCar()
         {
+            context = new CarRentalManagementEntities();
             var type = comboBoxCarType.Text;
             var typeId = context.CarTypes.Where(x => x.Type == type).Select(x => x.TypeId).Distinct();
             var make = comboBoxCarMake.Text;

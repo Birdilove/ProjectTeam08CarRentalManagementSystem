@@ -22,6 +22,14 @@ namespace ProjectTeam08CarRentalManagementSystem
 
         private void ButtonAddCarMake_Click(object sender, EventArgs e)
         {
+            AddMake();
+        }
+
+        /// <summary>
+        /// Method to add new car make into the make list.
+        /// </summary>
+        public void AddMake()
+        {
             CarRentalManagementEntities entities = new CarRentalManagementEntities();
             CarMake carMake = new CarMake()
             {
@@ -38,7 +46,7 @@ namespace ProjectTeam08CarRentalManagementSystem
                 MessageBox.Show("Cannot add Car Make to database" + ex.InnerException.InnerException.Message);
                 return;
             }
-           
+            
             this.DialogResult = DialogResult.OK;
             entities.Dispose();
             Close();

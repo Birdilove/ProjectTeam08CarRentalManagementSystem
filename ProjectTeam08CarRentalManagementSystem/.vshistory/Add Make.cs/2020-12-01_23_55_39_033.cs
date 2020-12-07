@@ -12,41 +12,33 @@ using CarRentalManagementCodeFirstFromDB;
 
 namespace ProjectTeam08CarRentalManagementSystem
 {
-    public partial class AddType : Form
+    public partial class Add_Make : Form
     {
-        public AddType()
+        public Add_Make()
         {
             InitializeComponent();
-            buttonAddCarType.Click += ButtonAddCarType_Click;
+            buttonAddCarMake.Click += ButtonAddCarMake_Click;
         }
 
-        private void ButtonAddCarType_Click(object sender, EventArgs e)
-        {
-            AddNewType();
-        }
-
-        /// <summary>
-        /// Method to add new type in car types.
-        /// </summary>
-        public void AddNewType()
+        private void ButtonAddCarMake_Click(object sender, EventArgs e)
         {
             CarRentalManagementEntities entities = new CarRentalManagementEntities();
-            CarType carType = new CarType()
+            CarMake carMake = new CarMake()
             {
-                Type = textBoxCarType.Text
+                Make = textBoxAddCarMake.Text
             };
 
             try
             {
-                entities.CarTypes.Add(carType);
+                entities.CarMakes.Add(carMake);
                 entities.SaveChanges();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Cannot add Car Type to database" + ex.InnerException.InnerException.Message);
+                MessageBox.Show("Cannot add Car Make to database" + ex.InnerException.InnerException.Message);
                 return;
             }
-
+           
             this.DialogResult = DialogResult.OK;
             entities.Dispose();
             Close();

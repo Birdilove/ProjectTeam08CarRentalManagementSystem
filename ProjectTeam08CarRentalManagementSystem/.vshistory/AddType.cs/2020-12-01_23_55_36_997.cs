@@ -25,9 +25,6 @@ namespace ProjectTeam08CarRentalManagementSystem
             AddNewType();
         }
 
-        /// <summary>
-        /// Method to add new type in car types.
-        /// </summary>
         public void AddNewType()
         {
             CarRentalManagementEntities entities = new CarRentalManagementEntities();
